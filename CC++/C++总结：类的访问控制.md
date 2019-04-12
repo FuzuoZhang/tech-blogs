@@ -1,4 +1,4 @@
-#### <center>C++总结：类的访问控制</center>
+<center>C++总结：类的访问控制</center>
 
 <center>2019-4-12</center>
 
