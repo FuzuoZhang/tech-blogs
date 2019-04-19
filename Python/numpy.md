@@ -26,6 +26,8 @@ np.zeros((2,3), dtype = np.int8)
 np.ones((2,3), dtype = np.int8)
 np.eye(2)  #array([[1.,0.],[0.,1.])
 np.full((2,2), 5, dtype = np.int8)  #array([[5,5],[5,5]])
+a = np.array([[1,2,3],[4,5,6]], dtype = np.int8)
+b = np.empty_like(a)   #b和a的形状相同
 ```
 
 
@@ -72,6 +74,7 @@ a.max()    #9
 a.min()    #1
 a.sum()    #45
 a.cumsum()   #逐元素累积加和，array([ 1,  3,  6, 10, 15, 21, 28, 36, 45])  
+a.T
 
 np.sin(a)
 np.cos(a)
