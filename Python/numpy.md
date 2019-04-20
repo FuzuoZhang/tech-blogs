@@ -1,4 +1,4 @@
-#### NumPy
+#### NumPy基础
 
 Numerical + Python
 
@@ -94,5 +94,74 @@ a[mask]  #array([2, 4, 6, 8])
 a[1]  #array([4, 5, 6])
 index = np.where(a > 3)   #(array([1, 1, 1, 2, 2, 2]), array([0, 1, 2, 0, 1, 2]))
 a[index]   #array([4, 5, 6, 7, 8, 9])
+
+a = a[:,[1,0,2]]   #交换列
+a = a[::-1]        #反转行
+a = a[:,::-1]      #反转列
 ```
+
+
+
+#### Numpy进阶
+
+**不改变原有数组，替换数组中满足某条件的元素**
+
+```python
+>>>a = np.arange(1,10, dtype = np.int8)
+>>>out = np.where(a & 1 == 1, -1, a)
+>>>out
+array([-1,  2, -1,  4, -1,  6, -1,  8, -1], dtype=int8)
+>>>a 
+array([1, 2, 3, 4, 5, 6, 7, 8, 9], dtype=int8)
+```
+
+**堆叠数组**
+
+```python
+>>>a = np.arange(9).reshape(3,3)
+>>>b = np.arange(1,10).reshape(3,-1)
+##--------垂直堆叠--------##
+>>>np.concatenate([a,b], axis = 0)
+array([[0, 1, 2],
+       [3, 4, 5],
+       [6, 7, 8],
+       [1, 2, 3],
+       [4, 5, 6],
+       [7, 8, 9]])
+>>>np.vstack([a,b]) #等价
+>>>np.r_[a,b]       #等价
+
+##--------水平堆叠--------##
+>>> np.concatenate([a,b], axis = 1)
+array([[0, 1, 2, 1, 2, 3],
+       [3, 4, 5, 4, 5, 6],
+       [6, 7, 8, 7, 8, 9]])
+>>> np.hstack([a,b])
+>>> np.c_[a,b]
+
+#[1,2,3] --> [1, 1, 1, 2, 2, 2, 3, 3, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3]
+a = np.array([1,2,3])
+np.r_[np.repeat(a,3), np.tile(a,3)]
+```
+
+**将处理标量的函数向量化用在numpy数组上**
+
+```python
+ def maxx(x, y):
+    """Get the maximum of two items"""
+    if x >= y:
+        return x
+    else:
+        return y
+
+pair_max = np.vectorize(maxx)   ###!!!
+
+a = np.array([5, 7, 9, 8, 6, 4, 5])
+b = np.array([6, 3, 4, 8, 9, 7, 1])
+
+>>>pair_max(a, b)
+array([6, 7, 9, 8, 9, 7, 5])
+```
+
+
 
