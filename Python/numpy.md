@@ -21,11 +21,16 @@ np.array([1,2,3,4], dtype = np.int8)
 np.array((1,2,3,4), dtype = np.int8)
 np.arange(5)   #[0,1,2,3,4]
 np.linspace(0, 5, num = 3)  #[0, 2.5, 5]
+
 np.random.random(5)  #5个0~1的随机数组成的一维数组
+np.random.randint(0,4,size = (2,3))    #随机整数[0,4)
+np.random.uniform(0,4,size = (2,3))    #均匀分布[0,4)
+
 np.zeros((2,3), dtype = np.int8)
 np.ones((2,3), dtype = np.int8)
 np.eye(2)  #array([[1.,0.],[0.,1.])
 np.full((2,2), 5, dtype = np.int8)  #array([[5,5],[5,5]])
+
 a = np.array([[1,2,3],[4,5,6]], dtype = np.int8)
 b = np.empty_like(a)   #b和a的形状相同
 ```
@@ -100,9 +105,31 @@ a = a[::-1]        #反转行
 a = a[:,::-1]      #反转列
 ```
 
+**打印数组**
+
+```python
+arr = np.arange(1,10)
+np.set_printoptions(threshold = 6) 
+>>>arr
+array([1, 2, 3, ..., 7, 8, 9])
+np.set_printoptions(threshold = np.nan)  #输出完整数组
+>>>arr
+array([1,2,3,4,5,6,7,8,9])
+
+arr = np.random.random((2,4))
+np.set_printoptions(precision = 2)
+>>>arr
+array([[0.68, 0.8 , 0.28, 0.13],
+       [0.92, 0.92, 0.83, 0.54]])
+np.set_printoptions(precision = 8)  #default
+>>>arr
+array([[0.67578085, 0.79732276, 0.27873146, 0.12832641],
+       [0.91739986, 0.91518904, 0.83325872, 0.53644379]])
+```
 
 
-#### Numpy进阶
+
+#### NumPy进阶
 
 **不改变原有数组，替换数组中满足某条件的元素**
 
